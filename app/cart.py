@@ -34,7 +34,7 @@ def bulk_discount(items: List[Dict[str, Any]]) -> float:
 
 def summary(items: List[Dict[str, Any]]) -> Dict[str, Any]:
     total = round(subtotal(items) - bulk_discount(items), 2)
-    average = round(total / len(items), 2)  # BUG: empty cart -> ZeroDivisionError
+    average = round(total / len(items), 2) if items else 0.0
     return {
         "lines": len(items),
         "subtotal": subtotal(items),
